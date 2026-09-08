@@ -1,0 +1,110 @@
+//Problem-01: Student Introduction Generator
+
+function studentIntroduction(student) {
+    if (typeof student !== 'object') {
+        return "Invalid";
+    }
+    if (!student.name || typeof student.name !== 'string') {
+        return "Invalid";
+    }
+    if (!student.age || typeof student.age !== 'number' || student.age <= 0) {
+        return "Invalid";
+    }
+    if (!student.course || typeof student.course !== 'string') {
+        return "Invalid";
+    }
+  return `My name is ${student.name}. I am ${student.age} years old. I am learning ${student.course}.`;
+}
+
+//Problem-02: Active User Filter
+
+function filterActiveUsers(users) {
+    //input must be an array
+    if (!Array.isArray(users)) {
+        return "Invalid";
+    }
+    //empty array check
+    if (users.length === 0) {
+        return "Invalid";
+    }
+    //hasOwnProperty check for isActive
+    for (const user of users) {
+        if (typeof user !== 'object' || !user.hasOwnProperty('isActive')) {
+            return "Invalid";
+        }
+    }
+// return only active users
+  return users.filter(user => user.isActive);
+}
+
+//Problem-03: Trending Hashtag Counter
+
+function countHashtags(caption) {
+    if (typeof caption !== 'string') {
+        return "Invalid";
+    }
+
+    // split to array and filter for hashtags
+    const strArray = caption.split(' ');
+    const hashtagCount = strArray.filter(word => word.startsWith('#')).length;
+
+    // find the longest hashtag
+    let longest = '';
+    for (const word of strArray) {
+        if (word.startsWith('#') && word.length > longest.length) {
+            longest = word;
+        }
+    }
+
+    // remove the '#' from the longest tag
+    const longestTag = longest.slice(1);
+    // retrun the final object
+    return { hashtagCount, longestTag };
+}
+
+//Problem-04: Bonus Score Calculator
+
+function bonusScore(scores) {
+    // array check
+    if (!Array.isArray(scores) || scores.length === 0) {
+        return "Invalid";
+    } else {
+        for (let scr of scores) {
+            if (typeof scr !== "number") {
+                return "Invalid";
+            }
+        }
+    }
+    // add 10 to each score and return the sum of all scores using map and reduce chaining
+    const result = scores.map(item => item + 10).reduce((accu, crruentValue) => { return accu + crruentValue }, 0);
+    return result;
+}
+
+//Problem-05: Debugging Challenge - AI Leaderboard Generator
+
+function generateLeaderboard(students) {
+    if (!Array.isArray(students)) {
+        return "Invalid";
+    }
+
+    if (students.length === 0) {
+        return "Invalid";
+    }
+    //hasOwnProperty check for name, score , score must be a number and name must be a string, other validation check
+    for (const student of students) {
+        if (typeof student !== 'object' || !student.hasOwnProperty('name') || !student.hasOwnProperty('score') || student.score < 0 || typeof student.name !== 'string' || typeof student.score !== 'number') {
+            return "Invalid";
+        }
+    }
+    // 70 or more
+    const qualified = students.filter(student => {
+        return student.score >= 70;
+    });
+    // uppercase
+    const names = qualified.map(({ name }) => {
+        return name.toUpperCase();
+    });
+    // fix the 3 elements bug
+    return names.slice(0, 3);
+}
+
