@@ -8,10 +8,10 @@ function studentIntroduction(student) {
     if (!student.age || typeof student.age !== 'number' || student.age <= 0) {
         return "Invalid";
     }
-    if (!student.language || typeof student.language !== 'string') {
+    if (!student.course || typeof student.course !== 'string') {
         return "Invalid";
     }
-  return `My name is ${student.name} ,I am ${student.age} years old. I am learning ${student.language}.`;
+  return `My name is ${student.name}. I am ${student.age} years old. I am learning ${student.course}.`;
 }
 
 
@@ -20,7 +20,7 @@ function studentIntroduction(student) {
 const data = {
   name: "John",
   age: 20,
-  language: "JavaScript"
+  course: "JavaScript"
 };
 
 const data1 = {
@@ -35,3 +35,4 @@ const data2 = ['name', 'age', 'language'];
 console.log(studentIntroduction(data));
 console.log(studentIntroduction(data1));
 console.log(studentIntroduction(data2));
+console.log(studentIntroduction({"name":"Rafi","age":18,"course":"JavaScript"}));
