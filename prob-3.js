@@ -8,23 +8,23 @@ function countHashtags(caption) {
     const hashtagCount = strArray.filter(word => word.startsWith('#')).length;
 
     // find the longest hashtag
-    const longest = strArray.reduce((longest, word) => {
+    let longest = '';
+    for (const word of strArray) {
         if (word.startsWith('#') && word.length > longest.length) {
-            return word;
+            longest = word;
         }
-        return longest;
-    }, '');
+    }
 
-// remove the '#' from the longest tag
- const longestTag = longest.slice(1); 
-  // retrun the final object
-    return { hashtagCount, longestTag };    
+    // remove the '#' from the longest tag
+    const longestTag = longest.slice(1);
+    // retrun the final object
+    return { hashtagCount, longestTag };
 }
 
 const data1 = "I love #coding and #JavaScript!";
 const data2 = "No hashtags here.";
 const data3 = "#hashtag1 #hashtag2 #hashtag3";
-const data4 = "Mixed #hashtags and text #example."; 
+const data4 = "Mixed #hashtags and text #example.";
 const data5 = 123;
 const data6 = ['#fun'];
 const data7 = { text: "#object" };
